@@ -20,7 +20,7 @@ services:
       # host port : container_port
     volumes:
       - ./flight_data_microservice:/home/node/flight_data_microservice
-      - ./flight_data_microservice/node_modules:/home/node/flight_data_microservice/node_modules
+      # - ./flight_data_microservice/node_modules:/home/node/flight_data_microservice/node_modules
     networks:
       - app-network
     depends_on:
@@ -35,8 +35,8 @@ services:
     # environment:
     #   - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
     #   - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-    # volumes:     
-    #   - dbdata:/data/db
+    volumes:     
+      - dbdata:/data/db
     networks:
       - app-network  
 
@@ -53,7 +53,7 @@ services:
       # host port : container_port
     volumes:
       - ./gateway:/home/node/api_gateway
-      - ./gateway/node_modules:/home/node/api_gateway/node_modules
+      # - ./gateway/node_modules:/home/node/api_gateway/node_modules
     networks:
       - app-network
     # command: ./wait-for.sh flight_data_microservice:50050 -- node index.js 
@@ -73,7 +73,7 @@ services:
       # host port : container_port
     volumes:
       - ./front_end:/home/node/front_end
-      - ./front_end/node_modules:/home/node/front_end/node_modules
+      # - ./front_end/node_modules:/home/node/front_end/node_modules
     networks:
       - app-network
     # command: ./wait-for.sh flight_data_microservice:50050 -- node index.js 
@@ -85,5 +85,5 @@ networks:
     driver: bridge
 
 volumes:
-  # dbdata:
+  dbdata:
   node_modules:
