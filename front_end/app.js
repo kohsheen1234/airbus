@@ -31,6 +31,9 @@ app.listen(port, function() {
   console.log("Server started on port " + port);
 });
 
+app.get("/", function(req, res, next) {
+  res.render("addflight");
+});
 //add flight page
 app.get("/flight/add", function(req, res, next) {
   res.render("addflight");
