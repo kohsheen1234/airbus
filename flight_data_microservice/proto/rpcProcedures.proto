@@ -1,0 +1,38 @@
+syntax = "proto3"; //Specify proto3 version.
+
+package airbus; //Optional: unique package name.
+
+//Service. define the methods that the grpc server can expose to the client.
+service FlightDataService {
+  rpc addFlightData(FlightData) returns (Response);
+  rpc getAllFlightData(Param) returns (ListFlightData);
+}
+
+// Message Type definition for an Employee.
+message FlightData {
+  string MSN = 1;
+  string harnessLength = 2;
+  string flightNumber = 3;
+  string grossWeight = 4;
+  string atmPressure = 5;
+  string roomTemperature = 6;  
+  string airport = 7;
+  string fuelCapacityLeft = 8;
+  string fuelCapacityRight = 9;
+  string fuelQuantityLeft = 10;
+  string fuelQuantityRight = 11;
+  string targetMaxAltitude = 12;
+  
+}
+
+message Param{
+  int64 MSN = 1;
+}
+
+message ListFlightData{
+  repeated FlightData flightdata = 1;
+}
+
+message Response{
+  string response = 1;
+}

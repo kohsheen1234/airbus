@@ -1,0 +1,42 @@
+const FlightData = require('../models/FlightData');
+
+module.exports.addFlightData = function (flightData, callback) {
+    console.log("FlightData Microservice : In addFlightData");
+    console.log(flightData);
+    FlightData.init().then(() => {
+        // assert.ifError(err);
+        var newFlightData = new FlightData(flightData);
+        newFlightData.save(callback);
+    });
+}
+
+module.exports.removeFlightData = function (MSN, callback) {
+    console.log("FlightData Microservice : In removeFlightData");
+    FlightData.deleteOne({
+        MSN: MSN
+    }, callback);
+}
+
+
+module.exports.searchFlightData = function (FlightDataname, callback) {
+    console.log("FlightData Microservice :In Check FlightData");
+    FlightData.find({
+        FlightDataname: FlightDataname
+    }, callback);
+}
+
+
+module.exports.getAllFlightData= function(callback){
+
+    console.log("FlightData Microservice : In get All FlightData");
+    const criteria = {};
+    const projections = {
+         _id: 0,
+         __v: 0
+      };
+    const options = {
+         lean: true
+      };
+    FlightData.find(criteria, projections, options, callback);
+    
+}

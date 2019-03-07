@@ -1,0 +1,70 @@
+version: '2'
+
+services:
+  flight_data_microservice:
+    build:
+      context: ./flight_data_microservice 
+      dockerfile: Dockerfile
+    image: flight_data_microservice
+    container_name: flight_data_microservice
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      # - MONGO_USERNAME=$MONGO_USERNAME
+      # - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_HOSTNAME=db
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
+    ports:
+      - "50050:50050"
+      # host port : container_port
+    volumes:
+      - ./flight_data_microservice:/home/node/flight_data_microservice
+      - ./flight_data_microservice/node_modules:/home/node/flight_data_microservice/node_modules
+    networks:
+      - app-network
+    depends_on:
+      - "db"
+    # command: ["./wait-for.sh", "db:27017", "--", "node", "index.js"] 
+    # OVerrides the CMD in Dockerfile 
+
+  db:
+    image: mongo:4.1.8-xenial
+    container_name: db
+    restart: unless-stopped
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+    #   - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+    volumes:     
+      - dbdata:/data/db
+    networks:
+      - app-network  
+
+  api_gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    image: api_gateway
+    container_name: api_gateway
+    restart: unless-stopped
+    # env_file: .env
+    ports:
+      - "4140:4140"
+      # host port : container_port
+    volumes:
+      - ./gateway:/home/node/api_gateway
+      - ./gateway/node_modules:/home/node/api_gateway/node_modules
+    networks:
+      - app-network
+    # command: ./wait-for.sh flight_data_microservice:50050 -- node index.js 
+    depends_on :
+      - "flight_data_microservice"
+
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:
