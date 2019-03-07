@@ -31,16 +31,20 @@ server.addService(proto.airbus.FlightDataService.service, {
         })
     },
 
-    removeflightData(call, callback) {
+    search(call, callback) {
 
-        flightData.removeFlightData(call.request.flightDataname, callback)
+        flightData.searchFlightData(call.request.flightDataname, function(err, result){
+            console.log("In FlightDataService  SEARCH Mapping");
+            
+            if(err){
+                console.log(err);
+                callback(err)
+            }else{
+                console.log(result);
+                callback(null,JSON.stringify(result))
+            }
+        })
     },
-
-    checkflightData(call, callback) {
-
-        flightData.checkFlightData(call.request.flightDataname,callback)
-    },
-
     getAllFlightData(call, callback) {
 
         flightData.getAllFlightData(function(err, result){
