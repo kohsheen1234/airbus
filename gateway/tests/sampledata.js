@@ -2,7 +2,7 @@
    "MSN" : "123",
   "harnessLength" : "34.3",
   "grossWeight" : "3453243.3",
-  "atmPressure" : "234.234",
+  "atmosphericPressure" : "234.234",
   "roomTemperature" : "234.234",  
   "airport" : "Bangalore",
   "fuelCapacityLeft" : "2452.234",

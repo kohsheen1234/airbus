@@ -15,7 +15,7 @@ message FlightData {
   string harnessLength = 2;
   string flightNumber = 3;
   string grossWeight = 4;
-  string atmPressure = 5;
+  string atmosphericPressure = 5;
   string roomTemperature = 6;  
   string airport = 7;
   string fuelCapacityLeft = 8;

@@ -3,10 +3,9 @@ const exphbs = require("express-handlebars");
 const path = require("path");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-const redis = require("redis");
-var querystring = require("querystring");
-var http = require("http");
-var fs = require("fs");
+var request = require('request');
+
+
 
 // Set Port
 const port = 3000;
@@ -27,23 +26,23 @@ app.use(methodOverride("_method"));
 
 
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Server started on port " + port);
 });
 
-app.get("/", function(req, res, next) {
+app.get("/", function (req, res, next) {
   res.render("homepage");
 });
 
-app.get("/add", function(req, res, next) {
+app.get("/add", function (req, res, next) {
   res.render("addflight");
 });
 
-app.get("/search", function(req, res, next) {
+app.get("/search", function (req, res, next) {
   res.render("SearchAndFilter");
 });
 
-app.post("add", function(req, res, next) {
+app.post("/flight/add", function (req, res, next) {
   //   let MSN = req.body.MSN;
   //   let HarnessLength = req.body.HarnessLength;
   //   let GrossWeight = req.body.GrossWeight;
@@ -55,30 +54,28 @@ app.post("add", function(req, res, next) {
   //   let MaximumAltitudeToBeRun = req.body.MaximumAltitudeToBeRun;
   //   let FlightNumber = req.body.FlightNumber;
 
+  console.log("In FlightDATA ADD");
+  console.log(req.body);
+
   var options = {
-    host: "api_gateway",
-    port: 4140,
-    path: "/addFlightData",
-    method: "POST",
-    headers: { "content-type": "aplication/json" },
-    body: req.body
+    method: 'POST',
+    url: 'http://api_gateway:4140/api/addFlightData',
+    headers:
+    {
+      'postman-token': 'ecbed902-d38d-96a9-3435-16520e633212',
+      'cache-control': 'no-cache',
+      'content-type': 'application/json'
+    },
+    body: req.body,
+    json: true
   };
 
-  var req = http.request(options, function(res) {
-    console.log("STATUS: " + res.statusCode);
-    console.log("HEADERS: " + JSON.stringify(res.headers));
-    res.setEncoding("utf8");
-    res.on("data", function(chunk) {
-      console.log("BODY: " + chunk);
-    });
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
   });
 
-  req.on("error", function(e) {
-    console.log("problem with request: " + e.message);
-  });
 
-  // write data to request body
-  req.write("data\n");
-  req.write("data\n");
-  req.end();
+  res.render('addflight');
 });
