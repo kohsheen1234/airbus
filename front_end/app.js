@@ -73,14 +73,14 @@ app.post("/flight/search", function (req, res, next) {
   let selectedButton = req.body.flight;
   console.log(selectedButton);
 
-  let searchQuery = req.body;
+  let searchQuery = req.body.searchQuery;
 
   console.log(searchQuery);
 
 
   var payload = {};
   for (var i = 1; i < 2; i++) {
-    payload[i + selectedButton] = searchQuery;
+    payload[selectedButton] = searchQuery;
   }
 
   var options = {
