@@ -17,12 +17,15 @@ message FlightData {
   string grossWeight = 4;
   string atmosphericPressure = 5;
   string roomTemperature = 6;  
-  string airport = 7;
+  string originAirport = 7;
   string fuelCapacityLeft = 8;
   string fuelCapacityRight = 9;
   string fuelQuantityLeft = 10;
   string fuelQuantityRight = 11;
-  string targetMaxAltitude = 12;
+ string targetMaxAltitude = 12;
+  string destinationAirport = 13;
+  string date = 14;
+  string time =15;
 }
 
 message Param{
@@ -36,3 +39,8 @@ message ListFlightData{
 message Response{
   string response = 1;
 }
+
+// msn flightno
+// bangalore - delhi 
+// 11th jan 630pm
+// fuel capacity before and after land

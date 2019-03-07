@@ -7,16 +7,21 @@ var flightDataSchema = mongoose.Schema({
             dropDups : true
         },
         harnessLength : String,
+        flightNumber : String,
         grossWeight : String,
-        atmPressure : String,
+        atmosphericPressure : String,
         roomTemperature : String,
-        airport : String,
+        originAirport : String,
         fuelCapacityLeft : String,
         fuelCapacityRight : String,
         fuelQuantityLeft : String,
         fuelQuantityRight : String,
         targetMaxAltitude : String,
-        flightNumber : String
+        destinationAirport : String,
+        date : String,
+        time :String
+        
+
     },  
     { collection: 'flightData' }, 
     { versionKey : false })

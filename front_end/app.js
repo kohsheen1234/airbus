@@ -24,13 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // methodOverride
 app.use(methodOverride("_method"));
 
-<<<<<<< HEAD
-
-
-app.listen(port, function () {
-=======
 app.listen(port, function() {
->>>>>>> 845b17e02fc6161282fa4159f260f65a0bce5aaa
   console.log("Server started on port " + port);
 });
 
@@ -87,6 +81,28 @@ app.post("/flight/add", function (req, res, next) {
 // Search processing
 app.post("/flight/search", function(req, res, next) {
   let id = req.body.optradio;
+
+  console.log(id);
+  
+  // var options = {
+  //   method: 'POST',
+  //   url: 'http://api_gateway:4140/api/addFlightData',
+  //   headers:
+  //   {
+  //     'postman-token': 'ecbed902-d38d-96a9-3435-16520e633212',
+  //     'cache-control': 'no-cache',
+  //     'content-type': 'application/json'
+  //   },
+  //   body: req.body,
+  //   json: true
+  // };
+
+  // request(options, function (error, response, body) {
+  //   if (error) throw new Error(error);
+
+  //   console.log(body);
+  // });
+
 
   var obj = [
     {
