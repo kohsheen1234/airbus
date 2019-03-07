@@ -5,7 +5,8 @@ package airbus; //Optional: unique package name.
 //Service. define the methods that the grpc server can expose to the client.
 service FlightDataService {
   rpc addFlightData(FlightData) returns (Response);
-  rpc getAllFlightData(Param) returns (ListFlightData);
+  rpc getAllFlightData(Param) returns (Response);
+  rpc search (Param) returns (Response);
 }
 
 // Message Type definition for an Employee.
@@ -22,11 +23,10 @@ message FlightData {
   string fuelQuantityLeft = 10;
   string fuelQuantityRight = 11;
   string targetMaxAltitude = 12;
-  
 }
 
 message Param{
-  int64 MSN = 1;
+  string jsonString = 1;
 }
 
 message ListFlightData{

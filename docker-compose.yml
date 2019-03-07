@@ -35,8 +35,8 @@ services:
     # environment:
     #   - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
     #   - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-    volumes:     
-      - dbdata:/data/db
+    # volumes:     
+    #   - dbdata:/data/db
     networks:
       - app-network  
 
@@ -66,5 +66,5 @@ networks:
     driver: bridge
 
 volumes:
-  dbdata:
+  # dbdata:
   node_modules:

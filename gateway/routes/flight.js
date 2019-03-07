@@ -29,34 +29,33 @@ routes.post('/addFlightData', (request, response) => {
             }
         } else {
             console.log("In Gateway API back");
-            console.log(result);
             response.status(201);
-            response.send(result);
+            response.json(JSON.parse(result.response));
         }
     });
 });
 
 
-// routes.delete('/:username', (request, response) => {
-//     console.log("API Gateway : Delete User");
+routes.post('/search/:aircraftModel', (request, response) => {
+    console.log("API Gateway : Search Flight Data");
 
-//     var username = request.params.username;
+    var aircraftModel = request.params.aircraftModel;
+    var query = request.body;
+    query['aircraftModel'] = aircraftModel;
+    var query = JSON.stringify(query)
+    userMicroserviceClient.search(query, function (err, result) {
+        if (err){
+            response.status(400);
+            response.send(err)
+        }
+        else {
+            response.status(200);
+            response.json(JSON.parse(result.response));
+        }
+        
+    })
 
-//     userMicroserviceClient.removeUser(username, function (err, result) {
-//         if (err) {
-//             response.status(400);
-//             response.send(err);
-//         }
-//         if (result.deletedCount == 0) {
-//             response.status(400);
-//             response.send({});
-//         } else {
-//             response.status(200);
-//             response.send({});
-//         }
-//     })
-
-// });
+});
 
 
 routes.get('/getFlightData', (request, response) => {
@@ -68,9 +67,8 @@ routes.get('/getFlightData', (request, response) => {
             response.send(err)
         }
         else {
-            console.log(result);
             response.status(200);
-            response.json(result);
+            response.json(JSON.parse(result.response));
         }
     })
 

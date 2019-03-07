@@ -43,7 +43,18 @@ server.addService(proto.airbus.FlightDataService.service, {
 
     getAllFlightData(call, callback) {
 
-        flightData.getAllFlightData(callback)
+        flightData.getAllFlightData(function(err, result){
+            console.log("In FlightDataService Mapping");
+            if(err){
+                console.log(err);
+                callback(err)
+            }else{
+                console.log(result);
+                // console.log(typeof result);
+                
+                callback(null,JSON.stringify(result))
+            }
+        })
     }
 });
 
