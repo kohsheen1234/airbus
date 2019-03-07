@@ -20,6 +20,8 @@ module.exports.removeFlightData = function (MSN, callback) {
 
 module.exports.searchFlightData = function (searchParams, callback) {
     console.log("FlightData Microservice :In Check FlightData");
+    console.log(searchParams);
+    
     // var key = Object.keys(searchParams)[0];
     // console.log(`/.*${searchParams[key]}.*/`);
 

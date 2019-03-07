@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // methodOverride
 app.use(methodOverride("_method"));
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Server started on port " + port);
 });
 
@@ -41,16 +41,6 @@ app.get("/search", function (req, res, next) {
 });
 
 app.post("/flight/add", function (req, res, next) {
-  //   let MSN = req.body.MSN;
-  //   let HarnessLength = req.body.HarnessLength;
-  //   let GrossWeight = req.body.GrossWeight;
-  //   let AtmosphericPressure = req.body.AtmosphericPressure;
-  //   let RoomTemperature = req.body.RoomTemperature;
-  //   let AirPort = req.body.Air_Port;
-  //   let FuelCapacityOnLeftWing = req.body.FuelCapacityOnLeftWing;
-  //   let FuelCapacityOnRightwing = req.body.FuelCapacityOnRightwing;
-  //   let MaximumAltitudeToBeRun = req.body.MaximumAltitudeToBeRun;
-  //   let FlightNumber = req.body.FlightNumber;
 
   console.log("In FlightDATA ADD");
   console.log(req.body);
@@ -79,133 +69,44 @@ app.post("/flight/add", function (req, res, next) {
 });
 
 // Search processing
-app.post("/flight/search", function(req, res, next) {
-  let id = req.body.optradio;
+app.post("/flight/search", function (req, res, next) {
+  let selectedButton = req.body.flight;
+  console.log(selectedButton);
 
-  console.log(id);
-  
-  // var options = {
-  //   method: 'POST',
-  //   url: 'http://api_gateway:4140/api/addFlightData',
-  //   headers:
-  //   {
-  //     'postman-token': 'ecbed902-d38d-96a9-3435-16520e633212',
-  //     'cache-control': 'no-cache',
-  //     'content-type': 'application/json'
-  //   },
-  //   body: req.body,
-  //   json: true
-  // };
+  let searchQuery = req.body;
 
-  // request(options, function (error, response, body) {
-  //   if (error) throw new Error(error);
-
-  //   console.log(body);
-  // });
+  console.log(searchQuery);
 
 
-  var obj = [
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    },
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    },
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    },
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    },
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    },
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    },
-    {
-      MSN: "123",
-      harnessLength: "34.3",
-      grossWeight: "3453243.3",
-      atmPressure: "234.234",
-      roomTemperature: "234.234",
-      airport: "Bangalore",
-      fuelCapacityLeft: "2452.234",
-      fuelCapacityRight: "24524523.34",
-      fuelQuantityLeft: "4565445.245",
-      fuelQuantityRight: "3453454.454",
-      targetMaxAltitude: "32423.234",
-      flightNumber: "EK-534"
-    }
-  ];
+  var payload = {};
+  for (var i = 1; i < 2; i++) {
+    payload[i + selectedButton] = searchQuery;
+  }
 
-  res.render("searchresults", {
-    flight: obj
+  var options = {
+    method: 'POST',
+    url: 'http://api_gateway:4140/api/search',
+    headers:
+    {
+      'postman-token': 'ecbed902-d38d-96a9-3435-16520e633212',
+      'cache-control': 'no-cache',
+      'content-type': 'application/json'
+    },
+    body: payload,
+    json: true
+  };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+    res.render("searchresults", {
+      flight: body
+    });
+
   });
+
+
+
+
 });
