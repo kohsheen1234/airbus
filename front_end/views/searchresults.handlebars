@@ -1,0 +1,23 @@
+{{#each flight}}
+
+<h1>{{this.MSN}} </h1>
+<ul class="list-group">
+    <li class="list-group-item"><strong> MSN : </strong>{{this.MSN}}</li>
+    <li class="list-group-item"><strong> HarnessLength: </strong>{{this.harnessLength}} </li>
+    <li class="list-group-item"><strong> AtmosphericPressure : </strong>{{this.atmPressure}}</li>
+    <li class="list-group-item"><strong> GrossWeight: </strong>{{this.grossWeight}} </li>
+    <li class="list-group-item"><strong> RoomTemperature : </strong>{{this.roomTemperature}}</li>
+    <li class="list-group-item"><strong> AirPort: </strong>{{this.airport}}</li>
+    <li class="list-group-item"><strong> FuelCapacityOnLeftWing : </strong>{{this.fuelCapacityLeft}}</li>
+    <li class="list-group-item"><strong> FuelCapacityOnRightwing: </strong>{{this.fuelCapacityRight}} </li>
+    <li class="list-group-item"><strong> FuelCapacityOnLeftWing : </strong>{{this.fuelQuantityLeftt}}</li>
+    <li class="list-group-item"><strong> FuelCapacityOnRightwing: </strong>{{this.fuelQuantityRight}} </li>
+    <li class="list-group-item"><strong> MaximumAltitudeToBeRun : </strong>{{this.targetMaxAltitude}}</li>
+    <li class="list-group-item"><strong> FlightNumber: </strong>{{this.flightNumber}} </li>
+</ul>
+<a class="btn btn-default pull-left" href="/">Back</a>
+
+
+
+
+{{/each}}

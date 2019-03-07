@@ -25,8 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // methodOverride
 app.use(methodOverride("_method"));
 
-
-
 app.listen(port, function() {
   console.log("Server started on port " + port);
 });
@@ -81,4 +79,114 @@ app.post("add", function(req, res, next) {
   req.write("data\n");
   req.write("data\n");
   req.end();
+});
+
+// Search processing
+app.post("/flight/search", function(req, res, next) {
+  let id = req.body.optradio;
+
+  var obj = [
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    },
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    },
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    },
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    },
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    },
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    },
+    {
+      MSN: "123",
+      harnessLength: "34.3",
+      grossWeight: "3453243.3",
+      atmPressure: "234.234",
+      roomTemperature: "234.234",
+      airport: "Bangalore",
+      fuelCapacityLeft: "2452.234",
+      fuelCapacityRight: "24524523.34",
+      fuelQuantityLeft: "4565445.245",
+      fuelQuantityRight: "3453454.454",
+      targetMaxAltitude: "32423.234",
+      flightNumber: "EK-534"
+    }
+  ];
+
+  res.render("searchresults", {
+    flight: obj
+  });
 });
