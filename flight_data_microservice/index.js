@@ -33,9 +33,14 @@ server.addService(proto.airbus.FlightDataService.service, {
 
     search(call, callback) {
 
-        flightData.searchFlightData(call.request.flightDataname, function(err, result){
+        console.log("IN FLIGHT DATA MIcroservice");
+        console.log(call.request);
+        console.log(typeof call.request);
+        
+        var searchParam = JSON.parse(call.request.jsonString)
+
+        flightData.searchFlightData(searchParam, function(err, result){
             console.log("In FlightDataService  SEARCH Mapping");
-            
             if(err){
                 console.log(err);
                 callback(err)

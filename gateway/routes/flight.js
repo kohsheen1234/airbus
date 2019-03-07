@@ -36,14 +36,16 @@ routes.post('/addFlightData', (request, response) => {
 });
 
 
-routes.post('/search/:aircraftModel', (request, response) => {
+routes.post('/search', (request, response) => {
     console.log("API Gateway : Search Flight Data");
 
-    var aircraftModel = request.params.aircraftModel;
+    // var aircraftModel = request.params.aircraftModel;
     var query = request.body;
-    query['aircraftModel'] = aircraftModel;
+    // query['aircraftModel'] = aircraftModel;
+
     var query = JSON.stringify(query)
-    userMicroserviceClient.search(query, function (err, result) {
+    
+    flightDataMicroserviceClient.search(query, function (err, result) {
         if (err){
             response.status(400);
             response.send(err)

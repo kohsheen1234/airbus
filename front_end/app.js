@@ -27,7 +27,7 @@ app.use(methodOverride("_method"));
 
 // Search Page
 app.get("/", function(req, res, next) {
-  res.render("searchusers");
+  res.render("flig");
 });
 
 // Search processing

@@ -18,11 +18,9 @@ module.exports.removeFlightData = function (MSN, callback) {
 }
 
 
-module.exports.searchFlightData = function (FlightDataname, callback) {
+module.exports.searchFlightData = function (searchParams, callback) {
     console.log("FlightData Microservice :In Check FlightData");
-    FlightData.find({
-        FlightDataname: FlightDataname
-    }, callback);
+    FlightData.find(searchParams, callback);
 }
 
 

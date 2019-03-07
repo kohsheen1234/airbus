@@ -60,6 +60,25 @@ services:
     depends_on :
       - "flight_data_microservice"
 
+  front_end:
+    build:
+      context: ./front_end
+      dockerfile: Dockerfile
+    image: front_end
+    container_name: front_end
+    restart: unless-stopped
+    # env_file: .env
+    ports:
+      - "3000:3000"
+      # host port : container_port
+    volumes:
+      - ./front_end:/home/node/front_end
+      - ./front_end/node_modules:/home/node/front_end/node_modules
+    networks:
+      - app-network
+    # command: ./wait-for.sh flight_data_microservice:50050 -- node index.js 
+    depends_on :
+      - "api_gateway"
 
 networks:
   app-network:
