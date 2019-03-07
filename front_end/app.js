@@ -32,14 +32,18 @@ app.listen(port, function() {
 });
 
 app.get("/", function(req, res, next) {
-  res.render("addflight");
+  res.render("homepage");
 });
-//add flight page
-app.get("/flight/add", function(req, res, next) {
+
+app.get("/add", function(req, res, next) {
   res.render("addflight");
 });
 
-app.post("/flight/add", function(req, res, next) {
+app.get("/search", function(req, res, next) {
+  res.render("SearchAndFilter");
+});
+
+app.post("add", function(req, res, next) {
   //   let MSN = req.body.MSN;
   //   let HarnessLength = req.body.HarnessLength;
   //   let GrossWeight = req.body.GrossWeight;
